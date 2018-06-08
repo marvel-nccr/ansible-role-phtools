@@ -1,0 +1,47 @@
+---
+- name: Get phtools code code from github
+  git:
+    repo: "{{ phtools_url }}"
+    dest: "{{ phtools_topdir }}"
+    version: "{{ phtools_version }}"
+
+- name: install packages
+  become: True
+  become_user: "{{ root_user }}"
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gcc
+
+- name: phtools - make
+  make:
+    chdir: "{{ phtools_topdir }}"
+  register: phtools_make
+
+#- name: phtools tests
+#  import_tasks: tests.yml
+#  when: phtools_make.changed and run_tests is defined and run_tests
+
+- name: "Put a line in ~/.profile to add binaries to the path"
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.profile"
+    line: "export PATH=${PATH}:{{ phtools_topdir }}"
+
+- include_role:
+    name: release_notes
+  vars:
+    section: "phtools"
+    option: "version"
+    value: "{{ phtools_version }}"
+  when: release_notes is defined and release_notes
+
+- include_role:
+    name: release_notes
+  vars:
+    section: "phtools"
+    option: "usage"
+    value: >-
+        phtools is installed in {{ phtools_topdir }}.
+        Binaries have been added to the PATH
+  when: release_notes is defined and release_notes

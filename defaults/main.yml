@@ -1,0 +1,21 @@
+---
+phtools_version: "master"
+phtools_url: "https://github.com/pdlotko/topological_pipelines_for_porous_materials"
+
+phtools_code_folder: "{{ ansible_env.HOME }}"
+phtools_src: "phtools"
+phtools_topdir: "{{ phtools_code_folder }}/{{phtools_src}}"
+
+phtools_executables:
+- name: subsample_pore_surface
+  folder: "{{ phtools_topdir }}"
+- name: create_megacell
+  folder: "{{ phtools_topdir }}"
+- name: compute_Rips_persistence_periodic_domain
+  folder: "{{ phtools_topdir }}"
+- name: pore_surface
+  folder: "{{ phtools_topdir }}"
+- name: distance_matrix
+  folder: "{{ phtools_topdir }}"
+
+root_user: root
