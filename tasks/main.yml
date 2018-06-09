@@ -1,10 +1,4 @@
 ---
-- name: Get phtools code code from github
-  git:
-    repo: "{{ phtools_url }}"
-    dest: "{{ phtools_topdir }}"
-    version: "{{ phtools_version }}"
-
 - name: install packages
   become: True
   become_user: "{{ root_user }}"
@@ -12,7 +6,13 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - gcc
+    - build-essential
+
+- name: Get phtools code code from github
+  git:
+    repo: "{{ phtools_url }}"
+    dest: "{{ phtools_topdir }}"
+    version: "{{ phtools_version }}"
 
 - name: phtools - make
   make:
