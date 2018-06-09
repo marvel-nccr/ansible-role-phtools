@@ -1,5 +1,5 @@
 ---
-phtools_version: "master"
+phtools_version: "594e216"
 phtools_url: "https://github.com/pdlotko/topological_pipelines_for_porous_materials"
 
 phtools_code_folder: "{{ ansible_env.HOME }}"
@@ -15,7 +15,9 @@ phtools_executables:
   folder: "{{ phtools_topdir }}"
 - name: pore_surface
   folder: "{{ phtools_topdir }}"
+  plugin: phtools.surface
 - name: distance_matrix
   folder: "{{ phtools_topdir }}"
+  plugin: phtools.dmatrix
 
 root_user: root
