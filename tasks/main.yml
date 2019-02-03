@@ -1,6 +1,6 @@
 ---
 - name: install packages
-  become: True
+  become: true
   become_user: "{{ root_user }}"
   apt:
     name: "{{ item }}"
@@ -19,9 +19,9 @@
     chdir: "{{ phtools_topdir }}"
   register: phtools_make
 
-#- name: phtools tests
-#  import_tasks: tests.yml
-#  when: phtools_make.changed and run_tests is defined and run_tests
+# - name: phtools tests
+#   import_tasks: tests.yml
+#   when: phtools_make.changed and run_tests is defined and run_tests
 
 - name: "Put a line in ~/.profile to add binaries to the path"
   lineinfile:
