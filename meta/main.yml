@@ -4,7 +4,9 @@ allow_duplicates: false
 galaxy_info:
   role_name: phtools
   author: "MARVEL NCCR"
-  description: "An ansible role that installs [tools](https://github.com/pdlotko/topological_pipelines_for_porous_materials) for analyzing the persistence homology of nanoporous materials."
+  description: |
+    An ansible role that installs [tools](https://github.com/pdlotko/topological_pipelines_for_porous_materials)
+    for analyzing the persistence homology of nanoporous materials.
   license: MIT
   min_ansible_version: 2.7
   platforms:
